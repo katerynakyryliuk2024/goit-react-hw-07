@@ -6,12 +6,17 @@ import { useEffect } from "react";
 import { fetchContacts } from "../../redux/contactsOps";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
+import {
+  selectContacts,
+  selectLoading,
+  selectError,
+} from "../../redux/contactsSlice";
 
 export default function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.items);
-  const isLoading = useSelector((state) => state.contacts.loading);
-  const isError = useSelector((state) => state.contacts.error);
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
